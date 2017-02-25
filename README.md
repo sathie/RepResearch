@@ -1,7 +1,4 @@
----
-title: "Reproducible Research"
-output: github_document
----
+Reproducible Research
 
 - Plot Practice
 - Assignment
