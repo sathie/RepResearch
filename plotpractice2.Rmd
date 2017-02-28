@@ -1,0 +1,22 @@
+---
+title: "Plotting Practice 2"
+author: "Sarah Thiesen"
+date: "25 Februar 2017"
+output: pdf_document
+---
+
+# Read data
+```{r}
+payments <- read.csv("/home/sarah/Uni/R/RepResearch/payments.csv")
+```
+
+#Question 2:
+Make a plot (possibly multi-panel) that answers the question: How does the relationship between mean covered charges (Average.Covered.Charges) and mean total payments (Average.Total.Payments) vary by medical condition (DRG.Definition) and the state in which care was received (Provider.State)?
+
+```{r, message = FALSE}
+require(ggplot2)
+q <- ggplot(payments, aes(log(Average.Covered.Charges), log(Average.Total.Payments)))
+q + geom_point(alpha = 0.1, colour = "blue", size = 0.5) + 
+  facet_grid(Provider.State ~ DRG.Definition) +
+  geom_smooth(method = lm, colour = "black", size = 0.5)
+```

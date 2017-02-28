@@ -1,0 +1,24 @@
+---
+title: "Plotting Practice 1"
+author: "Sarah Thiesen"
+date: "25 Februar 2017"
+output: pdf_document
+---
+
+# Read data
+```{r}
+payments <- read.csv("/home/sarah/Uni/R/RepResearch/payments.csv")
+```
+
+#Question 1:
+Make a plot that answers the question: What is the relationship between mean covered charges (Average.Covered.Charges) and mean total payments (Average.Total.Payments) in New York?
+
+```{r, message = FALSE}
+require(dplyr)
+paymentsNY <- filter(payments, Provider.City == "NEW YORK")
+
+require(ggplot2)
+p <- ggplot(paymentsNY, aes(Average.Covered.Charges, Average.Total.Payments))
+p + geom_point(alpha = 0.4, colour = "blue", size = 2) + 
+  geom_smooth(method = lm, colour = "black", size = 0.5)
+```
